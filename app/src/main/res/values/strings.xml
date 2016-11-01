@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">practical3</string>
+    <string name="action_settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="to">To</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="title_activity_font">FontActivity</string>
+</resources>
