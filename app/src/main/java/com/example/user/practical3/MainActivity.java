@@ -11,10 +11,15 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textViewAction;
+    private EditText etTo;
+    private EditText etSub;
+    private EditText etMess;
+    private int amount = 12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,18 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
         //Link UI to program
         textViewAction = (TextView) findViewById(R.id.textViewAction);
+        etTo = (EditText) findViewById(R.id.editTextTo);
+        etSub = (EditText) findViewById(R.id.editTextSubject);
+        etMess = (EditText) findViewById(R.id.editTextMessage);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+        }
     }
 
     @Override
@@ -60,9 +71,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.action_increase) {
-            textViewAction.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+            if(amount <= 30) {
+                amount ++;
+                etTo.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+                etMess.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+                etSub.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+            }
         } else if (id == R.id.action_decrease) {
-            textViewAction.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+            if(amount >=12) {
+                amount--;
+                etTo.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+                etMess.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+                etSub.setTextSize(TypedValue.COMPLEX_UNIT_SP, amount);
+            }
         }
 
         return super.onOptionsItemSelected(item);
